@@ -1,0 +1,18 @@
+{
+    "status_code": "201",
+    "status_message": "Transaksi sedang diproses",
+    "transaction_id": "e6c6d78d-06ab-4140-b1d8-2f85114dec3a",
+    "order_id": "1771489296",
+    "gross_amount": "94000.00",
+    "payment_type": "bank_transfer",
+    "transaction_time": "2021-01-10 12:18:12",
+    "transaction_status": "pending",
+    "va_numbers": {
+        "bank": "bca",
+        "va_number": "537879286564263", 
+    },
+    "fraud_status": "accept",
+    "bca_va_number": "537879286564263",
+    "pdf_url": "https://app.sandbox.midtrans.com/snap/v1/transactions/2086e281-51e1-4b4d-b3ed-7fdea879b4b8/pdf",
+    "finish_redirect_url": "http://example.com?order_id=1771489296&status_code=201&transaction_status=pending",       
+}

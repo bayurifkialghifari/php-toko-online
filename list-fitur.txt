@@ -1,0 +1,73 @@
+1 . catalog
+
+- category 											ok
+- product 											ok -> ( Berat, Lebar, Tinggi ) : Belum
+- color 											ok
+- size ( Berdasarkan category ) 					ok
+- tag 												ok
+- review ( Review product )
+
+2 . setting
+
+- level 											ok
+- menu 												ok
+- role menu ( Berdasarkan Level ) 					ok
+
+3 . website  
+
+- config website ( Nama, copyright, logo, icon ) 	ok
+- slider website ( Berdasarkan Menu ) 				ok
+- banner website ( Berdasarkan menu ) 				ok
+- header
+- footer
+
+4 . Information
+
+- FaQ
+- Terms & Condition
+
+5 . Discount
+
+- Tema discount 									ok
+- List discount ( Berdasarkan tema )
+- Product discount
+
+6 . Sales
+
+- Payment Method ( Midtrans, upload dan tambah lagi kalau ada )
+- order ( User order berbagai status )
+- payment ( Pembayaran order user berbagai status)
+- voucher ( Untuk pemesanan product )
+
+7 . Report
+
+- Order ( Per status, total )
+- Payment ( Per status, total )
+- User (online , terdaftar)
+- Product ( stok, view, order, rating )
+- discout & Voucher
+- reviews
+- user
+
+8 . Dashboard
+
+- Order
+- Payment ( total payment terkonfirmasi, pending, batal )
+- User ( online, terdafar )
+- Product ( stok, view, terjual )
+
+9 . Auth
+
+- Login user admin 									ok
+- Register user 									ok
+- Validasi email user 								ok
+- Change account information 						ok
+- Lupa Password 									
+- Change password 						
+
+10 . Integrasi Raja ongkir (ok), Notifikasi Email (ok), Chat cutomer service, Midtrans
+11 . Tambah template front end
+12 . Next bikin e - learning
+13 . Next bikin tryout online
+14 . Next bikin e - surat
+15 . Next bikin pos

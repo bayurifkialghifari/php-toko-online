@@ -1,0 +1,20 @@
+{
+    "name": "gud/framework",
+    "description": "The Gud PHP framework",
+    "require": {
+        "php": ">=5.6",
+        "phpmailer/phpmailer": "^6.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bayu Rifki Alghifari",
+            "email": "bayurifkialgh@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}

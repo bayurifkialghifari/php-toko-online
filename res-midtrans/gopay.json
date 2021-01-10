@@ -1,0 +1,12 @@
+ {
+    "status_code": "201",
+    "status_message": "Transaksi sedang diproses",
+    "transaction_id": "e6c6d78d-06ab-4140-b1d8-2f85114dec3a",
+    "order_id": "1771489296",
+    "gross_amount": "94000.00",
+    "payment_type": "gopay",
+    "transaction_time": "2021-01-10 12:18:12",
+    "transaction_status": "pending",
+    "fraud_status": "accept",
+    "finish_redirect_url": "http://example.com?order_id=1771489296&status_code=201&transaction_status=pending",       
+}
