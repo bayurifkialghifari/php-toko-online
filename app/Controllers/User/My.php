@@ -199,7 +199,7 @@
 			$checkout = new Checkout;
 			$data = $checkout->select('*, checkout.created_at as trans_date')
 			->leftJoin('checkout_shipping', 'checkout.check_id', 'checkout_shipping.checs_check_id')
-			->leftJoin('checkout_payment', 'checkout.check_id', 'checkout_payment.checp_check_id')
+			->leftJoin('checkout_payment', 'checkout.check_code', 'checkout_payment.checp_check_code')
 			->where('check_user_id', parent::sess('user_id'))
 			->get();
 

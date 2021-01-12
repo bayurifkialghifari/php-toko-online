@@ -8,6 +8,8 @@
 	use App\Models\Cart_detail;
 	use App\Models\Checkout as Checkouts;
 	use App\Models\Checkout_shipping;
+	use App\Models\Checkout_payment;
+	use App\Liblaries\Upload;
 	use App\Liblaries\Midtrans\Midtrans;
 
 	Class Checkout extends Controller
@@ -85,6 +87,16 @@
 			$shipp['checs_check_id'] = $checkout_id;
 			$create_shipping = Checkout_shipping::create($shipp);
 
+			// Create checkout payment
+			$create_payment = Checkout_payment::create([
+				'checp_check_code' => $unique_id,
+				'checp_gross_amount' => $total_price_plus_shipp,
+				'checp_status_value' => 'pendding',
+				'checp_fraud_status' => 'pendding',
+				'checp_status_code' => 0,
+			]);
+
+
 			echo json_encode([
 				'checkout_id' => $unique_id,
 			]);
@@ -101,6 +113,7 @@
 			$checkout = new Checkouts;
 			$checkout = $checkout->select('*')
 			->leftJoin('checkout_shipping', 'checkout.check_id', 'checkout_shipping.checs_check_id')
+			->leftJoin('checkout_payment', 'checkout.check_code', 'checkout_payment.checp_check_code')
 			->where('checkout.check_code', $id)
 			->get();
 			
@@ -117,11 +130,18 @@
 			->and('cart.cart_user_id', parent::sess('user_id'))
 			->get();
 
+			// Javascript
+			$javascript = "$('#proof_of_payment').on('change', function() 
+			{
+    			readURL(this, 'payment-proof-image')
+			})";
+
 			view('user/template-1/main-page', [
 				'page' => 'user/template-1/page/my-checkout-detail',
 				'title' => 'Detail Code ' . $id,
 				'records' => $data,
 				'checkout' => $checkout,
+				'javascript' => $javascript,
 			]);
 		}
 
@@ -171,7 +191,7 @@
 			// Cart data
 			$cart_data = array();
 
-			// Total harga cart
+			// Total cart price
 			$gross_amount 		= 0;
 
 			foreach($cart as $val)
@@ -183,12 +203,24 @@
 					'name' 		=> $val['prod_name'] . ' | Size ' . $val['size_name'] . ' | ' . $val['color_name'] ,
 				);
 
-				// Hitung total harga cart
+				// Count total cart price
 				$gross_amount 	+= (int)$val['card_price'] * (int)$val['card_qty'];
 
-				// Isi list cart
+				// Push list cart
 				array_push($cart_data, $new_data);
 			}
+
+			// Data shipping
+			$shipp_data = array(
+				'id' => rand(),
+				'price' => $checkout['checs_cost'],
+				'quantity' => 1,
+				'name' => 'Shipping Agent : ' . $checkout['checs_aggent'],
+			);
+			$gross_amount += (int)$checkout['checs_cost'];
+
+			// Push list cart
+			array_push($cart_data, $shipp_data);
 
 			// Trasaction details
 			$transaction_details = array(
@@ -246,11 +278,15 @@
 				// Change href and html
 				$('#code-checkout-html').html(code_trans)
 				$('#code-checkout-href').attr('href', '".base_url."my/checkout/list/detail/by/id/'+code_trans)
+				$('#check_code').val(code_trans)
 
 				// Pay with midtrans
 				$('#btn-midtrans').on('click', e =>
 				{
 					e.preventDefault()
+
+					$('#upload-view').css('display', 'none')
+					$('#note-view').css('display', 'block')
 
 					// Get token midtrans
 					$.ajax({
@@ -280,6 +316,19 @@
 			        	})
 					})
 				})
+
+				// Pay manual
+				$('#btn-manual').on('click', e =>
+				{
+					$('#upload-view').css('display', 'block')
+					$('#note-view').css('display', 'none')
+				})
+
+				// On change
+				$('#proof_of_payment').on('change', function() 
+				{
+        			readURL(this, 'payment-proof-image')
+    			})
 			})";
 
 			view('user/template-1/main-page', [
@@ -287,5 +336,39 @@
 				'title' => 'Payment Method',
 				'javascript' => $javascript,
 			]);
+		}
+
+		/**
+		* Upload manual transaction
+		*/
+		public function post_manual()
+		{
+			// Manual data
+			$check_code = parent::post('check_code');
+			$bank = parent::post('bank');
+			$account_number = parent::post('account_number');
+			$image = '';
+			$data = [];
+
+			// Upload proof of payment
+			if(isset($_FILES['proof_of_payment_1']))
+			{
+				$image = Upload::execute('proof_of_payment_1', ['folder' => 'transaction/proof/']);
+
+				$data = array_merge($data, ['checp_file' => $image]);
+			}
+
+			// Data manual final
+			$data['checp_type'] = 'manual';
+			$data['checp_payment_type'] = 'bank';
+			$data['checp_account_number'] = $account_number;
+			$data['checp_bank'] = $bank;
+			$data['checp_fraud_status'] = 'accept';
+			$data['checp_status_value'] = 'checked';
+
+			// Update payment
+			$update_payment = Checkout_payment::update(['checp_check_code' => $check_code], $data);
+
+			redirect(base_url . 'my/checkout/list/detail/by/id/' . $check_code);
 		}
 	}

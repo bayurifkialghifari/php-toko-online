@@ -73,6 +73,22 @@
 
 					<div class="size-212 p-t-2">
 						<span class="mtext-110 cl2">
+							My Checkout
+						</span>
+
+						<p class="stext-115 cl1 size-213 p-t-18">
+							<a href="<?= base_url ?>my/checkout">View Checkout List</a>
+						</p>
+					</div>
+				</div>
+
+				<div class="flex-w w-full p-b-42">
+					<span class="fs-18 cl5 txt-center size-211">
+						<span class="zmdi zmdi-shopping-cart"></span>
+					</span>
+
+					<div class="size-212 p-t-2">
+						<span class="mtext-110 cl2">
 							My Cart
 						</span>
 

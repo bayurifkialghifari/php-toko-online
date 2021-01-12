@@ -21,6 +21,59 @@
 <!-- Shoping Cart -->
 <div class="bg0 p-t-75 p-b-85">
 	<div class="container">
+	
+		<!-- FROM UPLOAD PAYMENT  -->
+		<form action="<?= base_url ?>my/checkout/paid/by/manual" method="post" id="upload-view" enctype="multipart/form-data" style="display: <?= ($checkout['checp_type'] === 'manual') ? 'block' : 'none' ?>">
+			<input type="hidden" name="check_code" value="<?= $checkout['check_code'] ?>">
+			<div class="size-212 p-t-2">
+				<span class="mtext-110 cl2">
+					<i class="fa fa-upload"></i> Proof of Payment Upload
+				</span>
+				<br>
+				<br>
+
+				<!-- Payment Data -->
+				<label>BANK</label>
+				<div class="bor8 m-b-20 how-pos4-parent">
+					<select class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" required name="bank">
+						<option selected disabled>--BANK--</option>
+						<option <?= ($checkout['checp_bank'] === 'bca') ? 'selected' : '' ?> value="bca">BCA</option>
+						<option <?= ($checkout['checp_bank'] === 'bni') ? 'selected' : '' ?> value="bni">BNI</option>
+						<option <?= ($checkout['checp_bank'] === 'bri') ? 'selected' : '' ?> value="bri">BRI</option>
+					</select>
+					<div class="how-pos4 pointer-none">
+						<i class="fa fa-bank"></i>
+					</div>
+				</div>
+
+				<label>ACCOUNT NUMBER</label>
+				<div class="bor8 m-b-20 how-pos4-parent">
+					<input type="number" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" placeholder="Account number" required name="account_number" value="<?= $checkout['checp_account_number'] ?>">
+					<div class="how-pos4 pointer-none">
+						<i class="fa fa-user"></i>
+					</div>
+				</div>
+
+				<label>PROOF OF PAYMENT </label>
+				<input type="file" accept="image/*" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" id="proof_of_payment" name="proof_of_payment">
+				<div class="text-center">
+					<img id="payment-proof-image" width="25%" src="<?= ($checkout['checp_file'] !== '') ? base_url . 'transaction/proof/' . $checkout['checp_file'] : '' ?>">
+				</div>
+				<br>
+
+				<button type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+					SAVE
+				</button>
+
+				<p class="stext-115 cl6 p-t-18">
+					* File can be emptied.
+				</p>
+
+				<br>
+			</div>
+		</form>
+
+		<!-- Row data detail checkout -->
 		<div class="row">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
 				<div class="m-l-25 m-r--38 m-lr-0-xl">
@@ -144,10 +197,12 @@
 							<span class="mtext-110 cl2 text-primary">
 								<?= $checkout['check_status_value'] ?>
 							</span>
-							<br>
-							<br>
-							<button class="btn btn-danger btn-md">Cancel</button>
-							<a href="<?= base_url ?>my/checkout/list/paid/by?id=<?= $checkout['check_code'] ?>" class="btn btn-success btn-md">Paid</a>
+							<?php if($checkout['checp_type'] === '') : ?>
+								<br>
+								<br>
+								<button class="btn btn-danger btn-md">Cancel</button>
+								<a href="<?= base_url ?>my/checkout/list/paid/by?id=<?= $checkout['check_code'] ?>" class="btn btn-success btn-md">Paid</a>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>

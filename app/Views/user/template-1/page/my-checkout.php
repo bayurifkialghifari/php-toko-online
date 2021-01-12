@@ -51,11 +51,18 @@
 										<td><?= nominal($r['check_total']) ?></td>
 										<td class="text-primary"><?= $r['check_status_value'] ?></td>
 										<td>
-											<div class="text-center">
-												<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
-												<a href="<?= base_url ?>my/checkout/list/paid/by?id=<?= $r['check_code'] ?>" class="btn btn-success btn-sm">Paid</a>
-												<button class="btn btn-danger btn-sm">Cancel</button>
-											</div>
+											<?php if($r['checp_type'] === '') : ?>
+												<div class="text-center">
+													<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
+													<a href="<?= base_url ?>my/checkout/list/paid/by?id=<?= $r['check_code'] ?>" class="btn btn-success btn-sm">Paid</a>
+													<button class="btn btn-danger btn-sm">Cancel</button>
+												</div>
+											<?php else : ?>
+												<div class="text-center">
+													<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
+													<button class="btn btn-danger btn-sm">Cancel</button>
+												</div>
+											<?php endif; ?>
 										</td>
 									</tr>
 								<?php endforeach; ?>

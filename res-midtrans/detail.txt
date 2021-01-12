@@ -1,0 +1,1 @@
+https://docs.midtrans.com/en/after-payment/http-notification

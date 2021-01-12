@@ -157,6 +157,7 @@
 	$app->add('/my/checkout/list/detail/by/id/:id', '\User\Checkout', 'checkout_detail');
 	$app->add('/my/checkout/list/paid/by', '\User\Checkout', 'paid_by_id');
 	$app->add('/my/checkout/paid/by/midtrans', '\User\Checkout', 'get_token_midtrans', 'post');
+	$app->add('/my/checkout/paid/by/manual', '\User\Checkout', 'post_manual', 'post');
 
 
 	// User Page
