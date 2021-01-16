@@ -128,35 +128,4 @@
 			</div>
 		</div>
 	</div>
-</section>	
-
-<script type="text/javascript">
-	function cancel(id)
-	{	
-		swal({
-            title: 'Cancel Order',
-      		text: 'Are you sure want to cancel this order ?',
-      		icon: 'warning',
-        	buttons: {
-			  	cancel: true,
-		    	confirm: true,
-		  	},
-        }).then((yes) => 
-        {
-            if(yes) 
-            {
-                $.ajax({
-                	method: 'put',
-	    			url: '<?= base_url ?>admin/sales-payment-list-update',
-	    			data: {
-	    				id: id,
-	    				type: 'FAILURE',
-	    			}
-                }).then(data =>
-	    		{
-			    	location.reload()
-	    		})
-            }
-        })
-	}
-</script>
+</section>

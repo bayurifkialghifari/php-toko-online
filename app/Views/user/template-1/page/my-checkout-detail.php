@@ -203,7 +203,7 @@
 							<?php if($checkout['checp_type'] === '') : ?>
 								<br>
 								<br>
-								<button class="btn btn-danger btn-md">Cancel</button>
+								<button class="btn btn-danger btn-md" onclick="cancel(<?= $checkout['check_code'] ?>)">Cancel</button>
 								<a href="<?= base_url ?>my/checkout/list/paid/by?id=<?= $checkout['check_code'] ?>" class="btn btn-success btn-md">Paid</a>
 							<?php endif; ?>
 						</div>

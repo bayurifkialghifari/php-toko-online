@@ -122,6 +122,12 @@
 	$app->add('/admin/website-blog-update', '\Admin\Website\Blog', 'update', 'post');
 	$app->add('/admin/website-blog-delete', '\Admin\Website\Blog', 'destroy', 'delete');
 
+	// Website Testimonials
+	$app->add('/admin/website-testimonials', '\Admin\Website\Testimonial');
+	$app->add('/admin/website-testimonials-create', '\Admin\Website\Testimonial', 'create', 'post');
+	$app->add('/admin/website-testimonials-update', '\Admin\Website\Testimonial', 'update', 'post');
+	$app->add('/admin/website-testimonials-delete', '\Admin\Website\Testimonial', 'delete', 'delete');
+
 
 
 
