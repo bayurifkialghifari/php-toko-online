@@ -55,13 +55,17 @@
 												<div class="text-center">
 													<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
 													<a href="<?= base_url ?>my/checkout/list/paid/by?id=<?= $r['check_code'] ?>" class="btn btn-success btn-sm">Paid</a>
-													<button class="btn btn-danger btn-sm">Cancel</button>
+													<button onclick="cancel('<?= $r['check_code'] ?>')" class="btn btn-danger btn-sm">Cancel</button>
 												</div>
 											<?php else : ?>
-												<div class="text-center">
-													<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
-													<button class="btn btn-danger btn-sm">Cancel</button>
-												</div>
+												<?php if($r['check_status_value'] === 'SETTLEMENT' or $r['check_status_value'] === 'FAILURE') : ?>
+														<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
+												<?php else : ?>
+													<div class="text-center">
+														<a href="<?= base_url ?>my/checkout/list/detail/by/id/<?= $r['check_code'] ?>" class="btn btn-warning btn-sm">Detail</a>
+														<button onclick="cancel('<?= $r['check_code'] ?>')" class="btn btn-danger btn-sm">Cancel</button>
+													</div>
+												<?php endif; ?>
 											<?php endif; ?>
 										</td>
 									</tr>
@@ -125,3 +129,34 @@
 		</div>
 	</div>
 </section>	
+
+<script type="text/javascript">
+	function cancel(id)
+	{	
+		swal({
+            title: 'Cancel Order',
+      		text: 'Are you sure want to cancel this order ?',
+      		icon: 'warning',
+        	buttons: {
+			  	cancel: true,
+		    	confirm: true,
+		  	},
+        }).then((yes) => 
+        {
+            if(yes) 
+            {
+                $.ajax({
+                	method: 'put',
+	    			url: '<?= base_url ?>admin/sales-payment-list-update',
+	    			data: {
+	    				id: id,
+	    				type: 'FAILURE',
+	    			}
+                }).then(data =>
+	    		{
+			    	location.reload()
+	    		})
+            }
+        })
+	}
+</script>

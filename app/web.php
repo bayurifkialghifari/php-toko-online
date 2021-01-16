@@ -69,6 +69,18 @@
 	$app->add('/admin/discount-theme-update', '\Admin\Discount\Theme', 'update', 'put');
 	$app->add('/admin/discount-theme-delete', '\Admin\Discount\Theme', 'destroy', 'delete');
 
+	// Sales Payment Method
+	$app->add('/admin/sales-payment-method', '\Admin\Sales\PaymentMethod');
+	$app->add('/admin/sales-payment-method-create', '\Admin\Sales\PaymentMethod', 'create', 'post');
+	$app->add('/admin/sales-payment-method-update', '\Admin\Sales\PaymentMethod', 'update', 'put');
+
+	// Sales Order List
+	$app->add('/admin/sales-order-list', '\Admin\Sales\OrderList');
+
+	// Sales Payment List
+	$app->add('/admin/sales-payment-list', '\Admin\Sales\PaymentList');
+	$app->add('/admin/sales-payment-list-update', '\Admin\Sales\PaymentList', 'update', 'put');
+
 	// Setting Level
 	$app->add('/admin/setting/level', '\Admin\Setting\Level');
 	$app->add('/admin/setting/level-create', '\Admin\Setting\Level', 'create', 'post');
@@ -103,6 +115,12 @@
 	$app->add('/admin/website-banner-create', '\Admin\Website\Banner', 'create', 'post');
 	$app->add('/admin/website-banner-update', '\Admin\Website\Banner', 'update', 'post');
 	$app->add('/admin/website-banner-delete', '\Admin\Website\Banner', 'destroy', 'delete');
+
+	// Website Blog
+	$app->add('/admin/website-blog', '\Admin\Website\Blog');
+	$app->add('/admin/website-blog-create', '\Admin\Website\Blog', 'create', 'post');
+	$app->add('/admin/website-blog-update', '\Admin\Website\Blog', 'update', 'post');
+	$app->add('/admin/website-blog-delete', '\Admin\Website\Blog', 'destroy', 'delete');
 
 
 
@@ -159,6 +177,10 @@
 	$app->add('/my/checkout/paid/by/midtrans', '\User\Checkout', 'get_token_midtrans', 'post');
 	$app->add('/my/checkout/paid/by/manual', '\User\Checkout', 'post_manual', 'post');
 
+	// Action Blog
+	$app->add('/blog-detail', '\User\Blog');
+	$app->add('/blog-detail/get_blog', '\User\Blog', 'get_blog', 'post');
+	$app->add('/blog-detail/update_view', '\User\Blog', 'update_view', 'post');
 
 	// User Page
 	$app->add('/user/product-detail/:url', '\User\Page', 'detail');

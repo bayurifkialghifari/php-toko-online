@@ -1,3 +1,11 @@
+<?php  
+	use App\Models\Payment_method;
+
+	$method = new Payment_method;
+	$list_method = $method->all();
+	$list_method = $method->result_array($list_method);
+?>
+
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
@@ -31,19 +39,23 @@
 					<?= $title ?>
 				</h4>
 
-				<div class="bor8 m-b-20 how-pos4-parent">
-					<button type="button" id="btn-manual" class="hov-btn3 stext-111 cl2 plh3 size-116 p-l-62 p-r-30">Manual</button>
-					<div class="how-pos4 pointer-none">
-						<i class="fa fa-file"></i>
+				<?php if($list_method[0]['paynt_status'] == 1) : ?>
+					<div class="bor8 m-b-20 how-pos4-parent">
+						<button type="button" id="btn-manual" class="hov-btn3 stext-111 cl2 plh3 size-116 p-l-62 p-r-30">Manual</button>
+						<div class="how-pos4 pointer-none">
+							<i class="fa fa-file"></i>
+						</div>
 					</div>
-				</div>
+				<?php endif; ?>
 
-				<div class="bor8 m-b-20 how-pos4-parent">
-					<button type="button" id="btn-midtrans" class="hov-btn3 stext-111 cl2 plh3 size-116 p-l-62 p-r-30">Midtrans</button>
-					<div class="how-pos4 pointer-none">
-						<i class="fa fa-exchange"></i>
+				<?php if($list_method[1]['paynt_status'] == 1) : ?>
+					<div class="bor8 m-b-20 how-pos4-parent">
+						<button type="button" id="btn-midtrans" class="hov-btn3 stext-111 cl2 plh3 size-116 p-l-62 p-r-30">Midtrans</button>
+						<div class="how-pos4 pointer-none">
+							<i class="fa fa-exchange"></i>
+						</div>
 					</div>
-				</div>
+				<?php endif; ?>
 
 			</div>
 

@@ -35,9 +35,9 @@
 6 . Sales
 
 - Payment Method ( Midtrans, upload dan tambah lagi kalau ada )
-- order ( User order berbagai status )
-- payment ( Pembayaran order user berbagai status)
-- voucher ( Untuk pemesanan product )
+- order ( User order berbagai status ) 				ok
+- payment ( Pembayaran order user berbagai status)	ok
+- voucher ( Untuk pemesanan product )				
 
 7 . Report
 

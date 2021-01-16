@@ -80,5 +80,7 @@
 		$months = $months[$months_code];
 		$year = date('Y', strtotime($format));
 
-		return "{$day}, {$date} {$months}, {$year}";
+		// {$day}, 
+		
+		return "{$date} {$months}, {$year}";
 	}
