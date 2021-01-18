@@ -95,6 +95,11 @@
 										<td><?=$q['checp_fraud_status']?></td>
 										<td><?=$q['check_status_value']?></td>
 										<td>
+											<?php if($q['checp_type'] == 'manual') : ?>
+												<button class="btn btn-warning btn-sm" onclick="View('<?= $q['checp_file'] ?>')">
+													<i class="fa fa-eye"></i> View image
+												</button>
+											<?php endif; ?>
 											<button class="btn btn-primary btn-sm" onclick="Acc('<?= $q['check_code'] ?>')">
 												<i class="fa fa-check"></i> Accept
 											</button>
@@ -140,6 +145,33 @@
 
 </div>
 <!-- END MAIN CONTENT -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<form id="form">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label for="tanggal">Preview Image</label>
+								<br>
+								<img src="" id="image-preview" width="100%"> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</form>
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
     let type
 
@@ -174,6 +206,13 @@
     	})
 
     })
+
+    // View Image
+    const View = (file) =>
+    {
+    	$('#myModal').modal('show')
+    	$('#image-preview').attr('src', `<?= base_url ?>transaction/proof/${file}`)
+    }
 
     // Acc button click
     const Acc = (id) =>
