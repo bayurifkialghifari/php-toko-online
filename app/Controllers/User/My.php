@@ -30,6 +30,62 @@
 		}
 
 		/**
+		* Load View Password
+		*/
+		public function password()
+		{
+			Sesion::cekBelum();
+
+			// Javasciprt password
+			$javascript = "$(() =>
+			{
+				$('#r_new_pass').on('change', e =>
+				{
+					e.preventDefault()
+
+					if($('#new_pass').val() != '')
+					{
+						change('new_pass', 'r_new_pass')
+					}
+				})
+
+				$('#new_pass').on('change', e =>
+				{
+					e.preventDefault()
+
+					if($('#r_new_pass').val() != '')
+					{
+						change('new_pass', 'r_new_pass')
+					}
+				})
+
+				function change(id, id2)
+				{
+					let pass = $('#' + id).val()
+					let rpass = $('#' + id2).val()
+
+					if(pass !== rpass)
+					{
+						$('#submit').removeClass('hov-btn3')
+						$('#submit').attr('disabled', 'disabled')
+						swal('Password', 'Your password are not same', 'warning')
+					}
+					else
+					{
+						$('#submit').addClass('hov-btn3')
+						$('#submit').attr('disabled', false)
+					}
+				}
+			})";
+
+			view('user/template-1/main-page', [
+				'page' => 'user/template-1/page/my-password',
+				'title' => 'My Password',
+				'javascript' => $javascript,
+			]);
+		}
+
+		/**
 		* Load View Cart
 		*/
 		public function cart()

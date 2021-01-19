@@ -17,33 +17,33 @@
 	<div class="container">
 		<div class="flex-w flex-tr">
 			<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-				<form method="post" action="<?= base_url ?>my/account-change">
+				<form method="post" action="<?= base_url ?>my/password-change">
 					<h4 class="mtext-105 cl2 txt-center p-b-30">
 						<?= $title ?>
 					</h4>
 
 					<div class="bor8 m-b-20 how-pos4-parent">
-						<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="user_name" value="<?= $records['user_name'] ?>" placeholder="Your Name" autocomplete="off">
+						<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password" name="old_pass" placeholder="Your Old Password" autocomplete="off" required>
 						<div class="how-pos4 pointer-none">
-							<i class="fa fa-user"></i>
+							<i class="fa fa-lock"></i>
 						</div>
 					</div>
 
 					<div class="bor8 m-b-20 how-pos4-parent">
-						<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="user_email" value="<?= $records['user_email'] ?>" placeholder="Your Email" autocomplete="off">
+						<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password" name="new_pass" id="new_pass" placeholder="Your New Password" autocomplete="off" required>
 						<div class="how-pos4 pointer-none">
-							<i class="fa fa-envelope"></i>
+							<i class="fa fa-lock"></i>
 						</div>
 					</div>
 
 					<div class="bor8 m-b-20 how-pos4-parent">
-						<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="number" name="user_phone" value="<?= $records['user_phone'] ?>" placeholder="Your Phone" autocomplete="off">
+						<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="password" name="r_new_pass" id="r_new_pass" placeholder="Repeat Your New Password" autocomplete="off" required>
 						<div class="how-pos4 pointer-none">
-							<i class="fa fa-phone"></i>
+							<i class="fa fa-lock"></i>
 						</div>
 					</div>
 
-					<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+					<button id="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 						Save
 					</button>
 				</form>
@@ -52,16 +52,16 @@
 			<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
 				<div class="flex-w w-full p-b-42">
 					<span class="fs-18 cl5 txt-center size-211">
-						<span class="lnr lnr-lock"></span>
+						<span class="fa fa-user"></span>
 					</span>
 
 					<div class="size-212 p-t-2">
 						<span class="mtext-110 cl2">
-							Password
+							My Account
 						</span>
 
 						<p class="stext-115 cl6 size-213 p-t-18">
-							<a href="<?= base_url ?>my/password">Change Password</a>
+							<a href="<?= base_url ?>my/account">View Account</a>
 						</p>
 					</div>
 				</div>

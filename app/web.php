@@ -157,6 +157,7 @@
 
 	// My Page
 	$app->add('/my/account', '\User\My', 'account');
+	$app->add('/my/password', '\User\My', 'password');
 	$app->add('/my/cart', '\User\My', 'cart');
 	$app->add('/my/checkout', '\User\My', 'checkout');
 	$app->add('/my/wishlist', '\User\My', 'wishlist');
@@ -164,6 +165,7 @@
 
 	// Action Account 
 	$app->add('/my/account-change', '\User\Account', 'account_change', 'post');
+	$app->add('/my/password-change', '\User\Account', 'password_change', 'post');
 
 	// Action Shipping
 	$app->add('/shipping/province', '\User\Shipping', 'province', 'post');
