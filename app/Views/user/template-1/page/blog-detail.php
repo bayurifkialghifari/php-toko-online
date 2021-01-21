@@ -16,7 +16,8 @@
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
-			<span class="stext-109 cl4" id="title-blog-breadcrumb">
+			<span class="stext-109 cl4">
+				<?= $records['blog_title'] ?>
 			</span>
 		</div>
 	</div>
@@ -30,35 +31,37 @@
 					<div class="p-r-45 p-r-0-lg">
 						<!--  -->
 						<div class="wrap-pic-w how-pos5-parent">
-							<img id="blog-thumbnail" alt="IMG-BLOG">
+							<img src="<?= base_url ?>website/blog/<?= $records['blog_thumbnal'] ?>" alt="IMG-BLOG">
 						</div>
 
 						<div class="p-t-32">
 							<span class="flex-w flex-m stext-111 cl2 p-b-19">
 								<span>
-									<span class="cl4">By</span> <span id="author">Admin</span>  
+									<span class="cl4">By</span> <span><?= $records['user_name'] ?></span>  
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
 								<span>
-									<span id="blog-thumbnail-date"></span>
+									<span><?= $records['created_at'] ?></span>
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
 								<span>
-									<span id="blog-category"></span>
+									<span><?= $records['cate_name'] ?></span>
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
-								<span id="view">
+								<span>
+									<?= $records['blog_view'] ?>
 								</span>
 							</span>
 
-							<h4 class="ltext-109 cl2 p-b-28" id="blog-title">
-								8 Inspiring Ways to Wear Dresses in the Winter
+							<h4 class="ltext-109 cl2 p-b-28">
+								<?= $records['blog_title'] ?>
 							</h4>
 
-							<p class="stext-117 cl6 p-b-26" id="blog-content">
+							<p class="stext-117 cl6 p-b-26">
+								<?= $records['blog_content'] ?>
 							</p>
 						</div>
 					</div>

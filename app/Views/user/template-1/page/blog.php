@@ -33,7 +33,7 @@
 					<!-- item blog -->
 					<?php foreach($blog_data as $b) : ?>
 						<div class="p-b-63">
-							<a href="<?= base_url ?>blog-detail?id=<?= $b['blog_id'] ?>" class="hov-img0 how-pos5-parent">
+							<a href="<?= base_url ?>blog-detail/<?= $b['blog_id'] ?>" class="hov-img0 how-pos5-parent">
 								<img src="<?= base_url ?>website/blog/<?= $b['blog_thumbnal'] ?>" alt="IMG-BLOG">
 
 								<div class="flex-col-c-m size-123 bg9 how-pos5">
@@ -46,7 +46,7 @@
 
 							<div class="p-t-32">
 								<h4 class="p-b-15">
-									<a href="<?= base_url ?>blog-detail?id=<?= $b['blog_id'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
+									<a href="<?= base_url ?>blog-detail/<?= $b['blog_id'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
 										<?= $b['blog_title'] ?>
 									</a>
 								</h4>
@@ -72,7 +72,7 @@
 										</span> -->
 									</span>
 
-									<a href="<?= base_url ?>blog-detail?id=<?= $b['blog_id'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+									<a href="<?= base_url ?>blog-detail/<?= $b['blog_id'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
 										Continue Reading
 
 										<i class="fa fa-long-arrow-right m-l-9"></i>

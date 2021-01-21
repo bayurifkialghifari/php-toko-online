@@ -186,9 +186,7 @@
 	$app->add('/my/checkout/paid/by/manual', '\User\Checkout', 'post_manual', 'post');
 
 	// Action Blog
-	$app->add('/blog-detail', '\User\Blog');
-	$app->add('/blog-detail/get_blog', '\User\Blog', 'get_blog', 'post');
-	$app->add('/blog-detail/update_view', '\User\Blog', 'update_view', 'post');
+	$app->add('/blog-detail/:id', '\User\Blog', );
 
 	// User Page
 	$app->add('/user/product-detail/:url', '\User\Page', 'detail');

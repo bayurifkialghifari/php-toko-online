@@ -72,6 +72,10 @@
             // Status route
             $route_match_found                  = false;
 
+            // Route name for extra character
+            $router_arr                         = array();
+            $url_arr                            = array();
+
             // Cek route 
             foreach(self::$routes as $route)
             {
@@ -86,25 +90,39 @@
                     // Cek array lenght
                     if(count($route_check) === count($parsed_url))
                     {
-                        // Cek special charackter
-                        for($i = 0;count($route_check) > $i;$i++)
+                        // Check route name
+                        for($i2 = 0;$i2 < count($route_check);$i2++)
                         {
-                            // Sepcial charackter found
-                            if(stristr($route_check[$i], ':'))
+                            if($route_check[$i2] === $parsed_url[$i2])
                             {
-                                // Move to params
-                                array_push($params, $parsed_url[$i]);
-                                
-                                // Unset array `:`
-                                unset($route_new[$i]);
-                                unset($parsed_url[$i]);
+                                array_push($router_arr, $parsed_url[$i2]);
+                                array_push($url_arr, $parsed_url[$i2]);
                             }
                         }
-                    }
 
-                    // Create new path
-                    $route_new                      = implode('/', $route_new);
-                    $path                           = implode('/', $parsed_url);
+                        // Check Route name for extra character array
+                        if(!empty($router_arr) AND !empty($url_arr))
+                        {
+                            // Cek special character
+                            for($i = 0;$i < count($route_check);$i++)
+                            {
+                                // Sepcial character found
+                                if(stristr($route_check[$i], ':'))
+                                {
+                                    // Move to params
+                                    array_push($params, $parsed_url[$i]);
+                                    
+                                    // Unset array `:`
+                                    unset($route_new[$i]);
+                                    unset($parsed_url[$i]);
+                                }
+                            }
+
+                            // Create new path
+                            $route_new                      = implode('/', $route_new);
+                            $path                           = implode('/', $parsed_url);
+                        }
+                    }
                 }
                 else
                 {
