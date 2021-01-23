@@ -454,7 +454,8 @@
                 * Execute
                 *
                 */
-                return $mail->send();
+                // return
+                $mail->send();
             }
             catch(Exception $e)
             {

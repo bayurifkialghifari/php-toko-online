@@ -148,6 +148,10 @@
 
 	// User Login
 	$app->add('/auth', '\User\Login');
+	$app->add('/auth/forgot-password', '\User\Login', 'forgot_password');
+	$app->add('/auth/forgot-password-post', '\User\Login', 'send_email_forgot_password', 'post');
+	$app->add('/auth/forgot_password/change/value-token/:token', '\User\Login', 'forgot_change_password');
+	$app->add('/auth/forgot_password/change', '\User\Login', 'forgot_change_password_post', 'post');
 	$app->add('/auth/login_post', '\User\Login', 'auth', 'post');
 	$app->add('/auth/register', '\User\Login', 'register');
 	$app->add('/auth/register_post', '\User\Login', 'register_post', 'post');
