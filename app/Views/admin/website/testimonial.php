@@ -346,7 +346,7 @@
     			method: 'delete',
     			url: '<?= base_url ?>admin/website-testimonials-delete',
     			data: {
-    				bann_id: id
+    				test_id: id
     			}
     		})
     		.then(data =>

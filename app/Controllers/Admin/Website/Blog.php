@@ -99,7 +99,7 @@
 			Sesion::cekBelum();
 
 			// Blog data
-			$exe = Blogs::delete(['bann_id' => parent::all()['bann_id']]);
+			$exe = Blogs::delete(['blog_id' => parent::all()['blog_id']]);
 			
 			echo json_encode($exe);
 		}

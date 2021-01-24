@@ -388,7 +388,7 @@
     		})
     		.then(data =>
     		{
-		    	setInterval(() => { location.reload() }, 300) 
+		    	// setInterval(() => { location.reload() }, 300) 
     		})
     	})
 

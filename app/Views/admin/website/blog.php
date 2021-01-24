@@ -339,7 +339,7 @@
     			method: 'delete',
     			url: '<?= base_url ?>admin/website-blog-delete',
     			data: {
-    				bann_id: id
+    				blog_id: id
     			}
     		})
     		.then(data =>

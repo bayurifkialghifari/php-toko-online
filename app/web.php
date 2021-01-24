@@ -108,7 +108,7 @@
 	$app->add('/admin/website-slider', '\Admin\Website\Slider');
 	$app->add('/admin/website-slider-create', '\Admin\Website\Slider', 'create', 'post');
 	$app->add('/admin/website-slider-update', '\Admin\Website\Slider', 'update', 'post');
-	$app->add('/admin/website-slider-delete', '\Admin\Setting\Slider', 'destroy', 'delete');
+	$app->add('/admin/website-slider-delete', '\Admin\Website\Slider', 'destroy', 'delete');
 
 	// Website Banner
 	$app->add('/admin/website-banner', '\Admin\Website\Banner');
@@ -126,7 +126,7 @@
 	$app->add('/admin/website-testimonials', '\Admin\Website\Testimonial');
 	$app->add('/admin/website-testimonials-create', '\Admin\Website\Testimonial', 'create', 'post');
 	$app->add('/admin/website-testimonials-update', '\Admin\Website\Testimonial', 'update', 'post');
-	$app->add('/admin/website-testimonials-delete', '\Admin\Website\Testimonial', 'delete', 'delete');
+	$app->add('/admin/website-testimonials-delete', '\Admin\Website\Testimonial', 'destroy', 'delete');
 
 
 
