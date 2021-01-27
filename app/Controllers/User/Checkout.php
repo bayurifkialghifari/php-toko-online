@@ -9,6 +9,7 @@
 	use App\Models\Checkout as Checkouts;
 	use App\Models\Checkout_shipping;
 	use App\Models\Checkout_payment;
+	use App\Models\Product;
 	use App\Liblaries\Upload;
 	use App\Liblaries\Midtrans\Midtrans;
 
@@ -54,6 +55,26 @@
 				'cart_total_price' => $total_price,
 				'cart_status' => 0,
 			]);
+
+			// Decrase product stok
+			$cart_detail = Cart_detail::on([
+				'card_cart_id' => $cart['cart_id'],
+			]);
+
+			foreach($cart_detail as $cd)
+			{
+				$prod_id = $cd['card_prod_id'];
+
+				// Get stok product
+				$prod_data = Product::on([
+					'prod_id' => $prod_id,
+				]);
+				$prod_data = $prod_data->fetch_assoc();
+
+				Product::update(['prod_id' => $prod_id], [
+					'prod_stok' => (int)$prod_data['prod_stok'] - (int)$cd['card_qty'],
+				]);
+			}
 
 
 
