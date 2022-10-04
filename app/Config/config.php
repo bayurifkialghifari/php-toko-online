@@ -1,6 +1,6 @@
 <?php
 
-	const base_url 			= 'http://localhost/online-store-starter-pack/';
+	const base_url 			= 'http://localhost/php-toko-online/';
 	
 	// Raja Ongkir Setting
 	const raja_ongkir_api 	= '9f2b19a293f734b79bbf6c2292da16ea';

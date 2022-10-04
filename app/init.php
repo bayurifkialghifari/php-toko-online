@@ -2,6 +2,8 @@
 	
 	// HEADER GGWP
 	header('Access-Control-Allow-Origin: *');
+	error_reporting(E_ERROR | E_WARNING | E_PARSE);
+	ini_set('display_errors', 'On');
 	
 	// SESSION GGWP
 	session_start();

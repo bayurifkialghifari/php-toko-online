@@ -160,6 +160,7 @@
                             }
 
                             // Call class
+                            $controller = new $controller;
                             call_user_func_array([  $controller, 
                                         $method   ],
 
