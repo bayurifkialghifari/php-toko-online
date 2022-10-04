@@ -22,9 +22,15 @@
 		*/
 		public function get($index)
 		{
-			parse_str(file_get_contents('php://input'), $get);
-			
-			return XssFilter::xss_clean(SqliFilter::sqli_clean($get[$index]));
+			$get_final;
+			$get = explode("&", explode("?", $_SERVER['REQUEST_URI'])[1]);
+			foreach($get as $g) {
+				$getget = explode("=", $g);
+
+				$get_final[$getget[0]] = $getget[1];
+			}
+
+			return XssFilter::xss_clean(SqliFilter::sqli_clean($get_final[$index]));
 		}
 
 		/** 
@@ -42,9 +48,15 @@
 		*/
 		public function get_all()
 		{
-			parse_str(file_get_contents('php://input'), $get);
+			$get_final;
+			$get = explode("&", explode("?", $_SERVER['REQUEST_URI'])[1]);
+			foreach($get as $g) {
+				$getget = explode("=", $g);
 
-			return $get;
+				$get_final[$getget[0]] = $getget[1];
+			}
+
+			return $get_final;
 		}
 
 		/** 
