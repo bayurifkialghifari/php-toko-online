@@ -188,7 +188,8 @@
 	$app->add('/my/checkout/list/paid/by', '\User\Checkout', 'paid_by_id');
 	$app->add('/my/checkout/paid/by/midtrans', '\User\Checkout', 'get_token_midtrans', 'post');
 	$app->add('/my/checkout/paid/by/manual', '\User\Checkout', 'post_manual', 'post');
-
+	$app->add('/my/checkout-checkpayment', '\User\Checkout', 'checkpayment', 'post');
+	
 	// Action Blog
 	$app->add('/blog-detail/:id', '\User\Blog', );
 

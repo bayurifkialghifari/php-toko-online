@@ -23,7 +23,7 @@
 	<div class="container">
 	
 		<!-- FROM UPLOAD PAYMENT  -->
-		<?php if($checkout['checp_status_value'] === 'SETTLEMENT' or $checkout['checp_status_value'] === 'FAILURE') : ?>
+		<?php if($checkout['checp_status_value'] == 'SETTLEMENT' or $checkout['checp_status_value'] == 'FAILURE') : ?>
 		<?php else: ?>
 			<form action="<?= base_url ?>my/checkout/paid/by/manual" method="post" id="upload-view" enctype="multipart/form-data" style="display: <?= ($checkout['checp_type'] === 'manual') ? 'block' : 'none' ?>">
 				<input type="hidden" name="check_code" value="<?= $checkout['check_code'] ?>">
@@ -200,7 +200,7 @@
 							<span class="mtext-110 cl2 text-primary">
 								<?= $checkout['check_status_value'] ?>
 							</span>
-							<?php if($checkout['checp_type'] === '') : ?>
+							<?php if($checkout['checp_type'] == ''): ?>
 								<br>
 								<br>
 								<button class="btn btn-danger btn-md" onclick="cancel(<?= $checkout['check_code'] ?>)">Cancel</button>

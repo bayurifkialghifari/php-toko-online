@@ -208,7 +208,6 @@
 			]);
 
 
-
 			// Cart data
 			$cart_data = array();
 
@@ -244,10 +243,15 @@
 			array_push($cart_data, $shipp_data);
 
 			// Trasaction details
+			$order_id = rand();
 			$transaction_details = array(
-			  	'order_id' => rand(),
+			  	'order_id' => $order_id,
 			  	'gross_amount' => $gross_amount,
 			);
+
+			Checkouts::update(['check_code' => $code_trans], [
+				'check_order_id' => $order_id,
+			]);
 
 			// Optional
 			$customer_details = array(
@@ -258,26 +262,26 @@
 			);
 
 			// CREDIT CART.
-	        $credit_card['secure'] = true;
+			$credit_card['secure'] = true;
 
-	        // Expired transaction setting
-	        $time = time();
-	        $custom_expiry = array(
-	            'start_time' => date("Y-m-d H:i:s O", $time),
-	            'unit' => 'day', 
-	            'duration'  => 2
-	        );
-	        
-	        // Transaction data
-	        $transaction_data = array(
-	            'transaction_details' => $transaction_details,
-	            'item_details' => $cart_data,
-	            'customer_details' => $customer_details,
-	            'credit_card' => $credit_card,
-	            'expiry' => $custom_expiry
-	        );
+			// Expired transaction setting
+			$time = time();
+			$custom_expiry = array(
+					'start_time' => date("Y-m-d H:i:s O", $time),
+					'unit' => 'day', 
+					'duration'  => 2
+			);
+			
+			// Transaction data
+			$transaction_data = array(
+					'transaction_details' => $transaction_details,
+					'item_details' => $cart_data,
+					'customer_details' => $customer_details,
+					'credit_card' => $credit_card,
+					'expiry' => $custom_expiry
+			);
 
-	        // Snap token generate
+			// Snap token generate
 			$snapToken = $midtrans->getSnapToken($transaction_data);
 			
 			echo json_encode($snapToken);
@@ -391,5 +395,42 @@
 			$update_payment = Checkout_payment::update(['checp_check_code' => $check_code], $data);
 
 			redirect(base_url . 'my/checkout/list/detail/by/id/' . $check_code);
+		}
+
+		public function checkpayment() {
+			$payload = file_get_contents('php://input');
+
+			$notification = json_decode($payload);
+			$signature_key = $notification->signature_key;
+			$order_id = $notification->order_id;
+			$transaction_time = $notification->transaction_time;
+			$transaction_status = $notification->transaction_status;
+			$type = $notification->payment_type;
+
+			$checkout = new Checkouts;
+			$checkout = $checkout->select('*')
+			->where('check_order_id', $order_id)
+			->get();
+
+			if ($checkout['check_status_value'] == 'SETTLEMENT' || $checkout['check_status_value'] == 'SUCCESS') {
+				echo "Transaction has been processed";
+			} else {
+				if ($transaction_status == 'capture') {
+					if ($type == 'credit_card') {
+						// Credit card
+					} 
+				} else if ($transaction_status == 'settlement') {
+
+					// Update checkout status
+					$update = Checkouts::update(['check_order_id' => $order_id], ['check_status_value' => 'SETTLEMENT']);
+
+					echo "Transaction order_id: " . $order_id . " successfully transfered using " . $type;
+
+				} else if ($transaction_status == 'pending') {
+				} else if ($transaction_status == 'deny') {
+				} else if ($transaction_status == 'expire') {
+				} else if ($transaction_status == 'cancel') {
+				}
+			}
 		}
 	}
